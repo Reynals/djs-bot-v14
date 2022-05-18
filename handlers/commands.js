@@ -14,6 +14,7 @@ function commands(client) {
             options: command.options ? command.options : []
         });
     });
+    client.application.commands.set(slash_commands, config.slashRegister.guildId);
     console.log('Slash Commands: Loaded...');
 
     // Load commands (message)

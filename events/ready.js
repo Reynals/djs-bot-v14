@@ -8,7 +8,7 @@ module.exports = async(client) => {
     client.user.setPresence({
         activities: [{
             type: 0, // Playing
-            name: `Made by Devin#3583 with ❤`
+            name: `Made with ❤ by Devin#3583`
         }],
         status: 'online'
     });

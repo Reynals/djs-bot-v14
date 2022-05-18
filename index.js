@@ -22,7 +22,7 @@ client.on('warn', (info) => console.log(info));
 
 // loaded all handlers
 const fs = require('fs');
-fs.readdirSync('./handlers').forEach(file => require(`./handlers/${file}.js`).load(client));
+fs.readdirSync('./handlers').forEach(file => require(`./handlers/${file}`).load(client));
 
 // catching node.js error to handle & anticipation system crash
 process.on('uncaughtException', (error) => console.error(error));

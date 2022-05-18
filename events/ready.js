@@ -1,7 +1,7 @@
 const slashCommands = require('../handlers/commands');
 
 module.exports = async(client) => {
-    // Register slash commands
+    // Registering slash commands
     await slashCommands.register(client);
 
     // Bot presence

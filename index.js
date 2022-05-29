@@ -24,7 +24,7 @@ client.on('warn', (info) => console.log(info));
 const fs = require('fs');
 fs.readdirSync('./handlers').forEach(file => require(`./handlers/${file}`).load(client));
 
-// catching node.js error to handle & anticipation system crash
+// catching node error to handle & anticipation system crash
 process.on('uncaughtException', (error) => console.error(error));
 process.on('unhandledRejection', (error) => console.error(error));
 

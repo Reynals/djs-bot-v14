@@ -3,7 +3,8 @@ module.exports = {
     description: 'Check bot latency',
     execute: async (client, interaction) => {
         const now = await Date.now();
+        await interaction.deferReply();
 
-        interaction.reply({ content: `Pong!: **${now-interaction.createdTimestamp}** ms` });
+        interaction.editReply({ content: `Pong!: **${now-interaction.createdTimestamp}** ms` });
     }
 };

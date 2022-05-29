@@ -14,6 +14,7 @@ function commands(client) {
             options: command.options ? command.options : []
         });
     });
+    slashCommands(); // register slash commands
     client.application.commands.set(slash_commands, config.slashRegister.guildId);
     console.log('Slash Commands: Loaded...');
 
@@ -29,26 +30,26 @@ function commands(client) {
 
 const { Routes } = require("discord-api-types/v10");
 const { REST } = require('@discordjs/rest');
-
+const config = require('../config.js');
 /**
  * { Routes } from discord-api-types/v10
  * { REST } from @discordjs/rest
  * This is handlers for registering Slash Commands
  * */
 
-async function slashCommands(client) {
+async function slashCommands() {
     const rest = new REST({ version: '10' })
-        .setToken(client.config.token);
+        .setToken(config.token);
     try {
         await rest.put(
             Routes.applicationGuildCommands(
-                client.config.slashRegister.clientId,
-                client.config.slashRegister.guildId
+                config.slashRegister.clientId,
+                config.slashRegister.guildId
             ), { body: slash_commands }
         );
     }
     catch(error) {
-        console.error('Slash Command Register:', error);
+        return console.error('Slash Command Register:', error);
     }
     console.log('Slash Commands: Registered!');
 };

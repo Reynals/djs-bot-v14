@@ -34,7 +34,7 @@ const config = require('../config.js');
  * This is handlers for registering Slash Commands
  * */
 
-async function slashCommands() {
+async function slashCommands(client) {
     const rest = new REST({ version: '10' }).setToken(config.token);
     try {
         await rest.put(

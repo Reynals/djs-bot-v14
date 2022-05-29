@@ -14,7 +14,7 @@ function commands(client) {
             options: command.options ? command.options : []
         });
     });
-    await slashCommands();
+    slashCommands();
     client.application.commands.set(slash_commands, config.slashRegister.guildId);
     console.log('Slash Commands: Reloaded...');
 

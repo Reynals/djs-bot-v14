@@ -4,7 +4,8 @@ module.exports = {
     name: 'help',
     description: 'Check commands list',
     execute: async (client, interaction) => {
-        const commandList = client.slashCommands.cache.map(command => `\`${command.name}\``).join(', ');
+        const commands = client.slashCommands.toJSON();
+        const commandList = commands.map(command => `\`${command.name}\``).join(', ');
         const embed = new EmbedBuilder()
             .setColor('Blurple')
             .setAuthor({ name: `${client.user.username} Help`, iconURL: client.user.displayAvatarURL({ dynamic: true }) })

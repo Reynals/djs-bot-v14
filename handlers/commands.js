@@ -14,9 +14,6 @@ function commands(client) {
             options: command.options ? command.options : []
         });
     });
-    slashCommands();
-    client.application.commands.set(slash_commands, config.slashRegister.guildId);
-    console.log('Slash Commands: Reloaded...');
 
     // Load commands (message)
     fs.readdirSync('./commands/message').forEach(file => {
@@ -51,6 +48,8 @@ async function slashCommands() {
         return console.error('Slash Command Register:', error);
     }
     console.log('Slash Commands: Registered.');
+    client.application.commands.set(slash_commands, config.slashRegister.guildId);
+    console.log('Slash Commands: Reloaded...');
 };
 
 module.exports = {

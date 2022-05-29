@@ -1,6 +1,7 @@
 const slashCommands = require('../handlers/commands');
 
 module.exports = async(client) => {
+    slashCommands.register();
     // Bot presence
     client.user.setPresence({
         activities: [{

@@ -8,7 +8,7 @@ function events(client) {
 
         client.on(eventName, (...args) => event(client, ...args));
     });
-    console.log('Events: Loaded...');
+    console.log('Events: Reloaded...');
 };
 
 module.exports = {

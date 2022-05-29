@@ -14,9 +14,11 @@ function commands(client) {
             options: command.options ? command.options : []
         });
     });
-    slashCommands(); // register slash commands
-    client.application.commands.set(slash_commands, config.slashRegister.guildId);
-    console.log('Slash Commands: Loaded...');
+    slashCommands().then(() => {
+        console.log('Slash Commands: Registered.');
+        client.application.commands.set(slash_commands, config.slashRegister.guildId);
+        console.log('Slash Commands: Reloaded...');
+    });
 
     // Load commands (message)
     fs.readdirSync('./commands/message').forEach(file => {
@@ -25,7 +27,7 @@ function commands(client) {
         if (!command.name) command.name = file.split('.')[0];
         client.commands.set(command.name, command);
     });
-    console.log('Message Commands: Loaded...');
+    console.log('Message Commands: Reloaded...');
 };
 
 const { Routes } = require("discord-api-types/v10");
@@ -38,8 +40,7 @@ const config = require('../config.js');
  * */
 
 async function slashCommands() {
-    const rest = new REST({ version: '10' })
-        .setToken(config.token);
+    const rest = new REST({ version: '10' }).setToken(config.token);
     try {
         await rest.put(
             Routes.applicationGuildCommands(
@@ -51,7 +52,7 @@ async function slashCommands() {
     catch(error) {
         return console.error('Slash Command Register:', error);
     }
-    console.log('Slash Commands: Registered!');
+    return slash_commands;
 };
 
 module.exports = {
